@@ -1,0 +1,28 @@
+fieldset {
+	width: 50%;
+}
+label {
+	display: block;
+	margin-top: 1rem;
+	margin-bottom: 10px;
+}
+
+.address {
+	margin-top: 10px;
+}
+
+.selectMenu {
+	width: 14em;
+}
+
+form {
+	position: relative;
+	margin-bottom: 24px;
+}
+
+.submitBtn {
+	margin-top: 24px;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

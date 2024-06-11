@@ -1,5 +1,5 @@
-import Home from "./pages/home";
-import ListEmployees from "./pages/listEmployees";
+import Home from "./pages/home/Home";
+import ListEmployees from "./pages/listEmployees/ListEmployees";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 

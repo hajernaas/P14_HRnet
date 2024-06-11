@@ -1,17 +1,22 @@
 [
 	{
-		"name": "Sales"
+		"name": "Sales",
+		"label": "Sales"
 	},
 	{
-		"name": "Marketing"
+		"name": "Marketing",
+		"label": "Marketing"
 	},
 	{
-		"name": "Engineering"
+		"name": "Engineering",
+		"label": "Engineering"
 	},
 	{
-		"name": "Human Resources"
+		"name": "Human Resources",
+		"label": "Human Resources"
 	},
 	{
-		"name": "Legal"
+		"name": "Legal",
+		"label": "Legal"
 	}
 ]

@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import listEmployees from "../data/listEmployees.json";
 
 const initialState = {
-	employees: listEmployees, //Contiendra une liste d'employés
+	employees: listEmployees, //Liste d'employés initiales prédéfinie dans un fichier json
 };
 
 const employeesSlice = createSlice({
 	name: "employees",
 	initialState,
+	// Un réducteur addEmployee qui permet d'ajouter un nouvel employé à
+	//cette liste lorsqu'une action addEmployee est dispatchée
 	reducers: {
 		addEmployee(state, action) {
 			state.employees.push(action.payload);
