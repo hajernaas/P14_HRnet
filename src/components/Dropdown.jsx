@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 //our offrir une sélection d'options à partir d'un menu déroulant.
 
-const Dropdown = ({ value, options, label }) => {
+const Dropdown = ({ className, value, options, label, onChange }) => {
 	const [selectedOption, setSelectedOption] = useState(value);
+
+	useEffect(() => {
+		setSelectedOption(value);
+	}, [value]);
 
 	const handleChange = (option) => {
 		setSelectedOption(option);
+		onChange(option);
 	};
 
 	return (
-		<div>
+		<div className={className}>
 			{label && <label htmlFor={`select-${label}`}>{label}</label>}
 			<Select
 				id={`select-${label}`}

@@ -26,3 +26,9 @@ form {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+.error {
+	color: red;
+	font-size: 0.875em;
+	margin-top: 0.25em;
+}
