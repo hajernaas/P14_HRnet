@@ -1,9 +1,11 @@
 //import React, { useState } from "react";
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import styles from "./Dropdown.module.css";
+
 //our offrir une sélection d'options à partir d'un menu déroulant.
 
-const Dropdown = ({ className, value, options, label, onChange }) => {
+const Dropdown = ({ id, value, options, onChange }) => {
 	const [selectedOption, setSelectedOption] = useState(value);
 
 	useEffect(() => {
@@ -16,10 +18,12 @@ const Dropdown = ({ className, value, options, label, onChange }) => {
 	};
 
 	return (
-		<div className={className}>
-			{label && <label htmlFor={`select-${label}`}>{label}</label>}
+		<div>
+			{/* {label && <label htmlFor={`select-${label}`}>{label}</label>} */}
 			<Select
-				id={`select-${label}`}
+				id={id}
+				className={styles.selectElement}
+				// id={`select-${label}`}
 				value={selectedOption}
 				onChange={handleChange}
 				options={options}
