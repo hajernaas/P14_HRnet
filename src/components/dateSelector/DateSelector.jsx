@@ -2,6 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./DateSelector.module.css";
+import PropTypes from "prop-types";
 
 //pour offrir une sélection de dates personnalisée avec plusieurs fonctionnalités en utilisant la bibliothèque react-datepicker
 
@@ -83,6 +84,15 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 			)}
 		/>
 	);
+};
+
+DateSelector.propTypes = {
+	id: PropTypes.string.isRequired,
+	date: PropTypes.instanceOf(Date),
+	onChange: PropTypes.func.isRequired,
+	minDate: PropTypes.instanceOf(Date),
+	maxDate: PropTypes.instanceOf(Date),
+	filterDate: PropTypes.func,
 };
 
 export default DateSelector;

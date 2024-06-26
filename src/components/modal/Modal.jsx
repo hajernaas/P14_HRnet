@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./Modal.module.css";
+import PropTypes from "prop-types";
 
 const Modal = ({ onClose }) => {
 	const modalRef = useRef(null); //référence pour accéder directement au DOM de la modale
@@ -51,6 +52,10 @@ const Modal = ({ onClose }) => {
 			</div>
 		</div>
 	);
+};
+
+Modal.propTypes = {
+	onClose: PropTypes.func.isRequired,
 };
 
 export default Modal;
