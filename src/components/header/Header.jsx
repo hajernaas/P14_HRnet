@@ -43,7 +43,7 @@ const Header = () => {
 						) : (
 							<FontAwesomeIcon icon={faUsers} className={styles.iconUser} />
 						)}*/}
-						<span>{toggle ? "Home" : "Employees"}</span>
+						<span>{toggle ? "EMPLOYEES" : "HOME"}</span>
 					</NavLink>
 				</div>
 			</nav>

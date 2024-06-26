@@ -1,7 +1,6 @@
 //créer un nouvel employé en remplissant un formulaire. Une fois le formulaire soumis, les données sont envoyées
-// au store Redux à l'aide de useDispatch pour ajouter l'employé à la liste des employés
+// au store Redux à l'aide de useDispatch pour ajouter le nouvel employé à la liste des employés
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { addEmployee } from "../../slices/employeesSlice";
@@ -11,46 +10,30 @@ import DateSelector from "../dateSelector/DateSelector";
 import Dropdown from "../dropdown/Dropdown";
 import styles from "./FormEmployee.module.css";
 import { differenceInYears } from "date-fns";
-import imgCreateUser from "../../assets/imgCreateUser";
+import imgCreateUser from "../../assets/imgCreateUser.webp";
+import Modal from "../modal/Modal";
 
 const FormEmployee = () => {
-	//Options pour les départements.
+	//Options pour les départements , générées à partir du fichier departments.json.
 	const departmentOptions = departments.map((depart) => ({
 		value: depart.name,
 		label: depart.label,
 	}));
 
-	//Options pour les états, générées à partir du fichier states.json.
+	//Options pour les states, générées à partir du fichier states.json.
 	const stateOptions = states.map((state) => ({
 		value: state.abbreviation,
 		label: state.name,
 	}));
 
-	//Déclaration des états locaux pour chaque champ du formulaire.
-	/*const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [dateOfBirth, setDateOfBirth] = useState(null);
-	const [startDate, setStartDate] = useState(null);
-	const [street, setStreet] = useState("");
-	const [city, setCity] = useState("");*/
+	//Déclaration des états locaux pour les champs state et department du formulaire.
 	const [state, setState] = useState(stateOptions[0]);
-	//const [zipCode, setZipCode] = useState("");
 	const [department, setDepartment] = useState(departmentOptions[0]);
 
-	const initialEmployeeState = {
-		dateOfBirth: null,
-		startDate: null,
-		firstName: "",
-		lastName: "",
-		street: "",
-		city: "",
-		department: "Sales",
-		state: "Alabama",
-		zipCode: "",
-	};
+	const [isOpenModal, setIsOpenModal] = useState(false);
 
-	//const [isModalOpen, setIsModalOpen] = useState(false);
-
+	//our gérer le formulaire, avec des méthodes pour l'inscription des champs, la soumission,
+	//la gestion des erreurs, la réinitialisation, et le contrôle des champs.
 	const {
 		register,
 		handleSubmit,
@@ -62,50 +45,22 @@ const FormEmployee = () => {
 	//pour envoyer des actions au store Redux.
 	const dispatch = useDispatch();
 
-	//Fonction pour gérer la soumission du formulaire.
-	//Crée un nouvel objet newEmployee avec les valeurs des champs.
-
-	/*const onSubmit = (e) => {
-		e.preventDefault();
-		const newEmployee = {
-			firstName,
-			lastName,
-			dateOfBirth: dateOfBirth ? dateOfBirth.toISOString() : null,
-			startDate: startDate ? startDate.toISOString() : null,
-			street,
-			city,
-			state,
-			zipCode,
-			department,
-		};
-		//Envoie l'action addEmployee avec les nouvelles données.
-		dispatch(addEmployee(newEmployee));
-		//Réinitialise les champs du formulaire.
-		setFirstName("");
-		setLastName("");
-		setDateOfBirth(null);
-		setStartDate(null);
-		setStreet("");
-		setCity("");
-		setState(stateOptions[0]);
-		setZipCode("");
-		setDepartment(departmentOptions[0]);
-		//setIsModalOpen(true);
-		reset();
-	};*/
-
 	const today = new Date();
 	const maxBirthDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-	const minBirthDate = new Date(today.getFullYear() - 65, today.getMonth(), today.getDate());
+	const minBirthDate = new Date(today.getFullYear() - 64, today.getMonth(), today.getDate());
 
 	const validateAge = (date) => {
-		const age = differenceInYears(new Date(), new Date(date));
-		return age >= 18 && age <= 65;
+		const age = differenceInYears(new Date(), new Date(date)); //pour calculer la différence en années.
+		return age >= 18 && age <= 64;
 	};
 
+	// pour filtrer les dates de début qui ne sont pas dans le futur
 	const filterStartDate = (date) => {
 		return date <= today;
 	};
+
+	//Fonction pour gérer la soumission du formulaire.
+	//Crée un nouvel objet newEmployee avec les valeurs des champs.
 
 	const onSubmit = (data) => {
 		const newEmployee = {
@@ -113,24 +68,26 @@ const FormEmployee = () => {
 			dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth).toISOString() : null,
 			startDate: data.startDate ? new Date(data.startDate).toISOString() : null,
 		};
-
 		// Envoie l'action addEmployee avec les nouvelles données.
 		dispatch(addEmployee(newEmployee));
-		// Réinitialise les champs du formulaire.
+		//Réinitialise les champs du formulaire.
 		reset();
+		setIsOpenModal(true);
+		setState(stateOptions[0]);
+		setDepartment(departmentOptions[0]);
 	};
 
 	return (
 		<section className={styles.sectionForm}>
 			<div className={styles.formLeft}>
-				<img src={imgCreateUser} alt="Creation Employee"></img>
+				<img src={imgCreateUser} width={534} height={494} alt="Creation Employee"></img>
 				<p>An internal web application, which manages employee files.</p>
 			</div>
 			<div className={styles.formRight}>
-				<h2 className={styles.title}>Create Employee</h2>
+				<h2 className={styles.title} aria-label="Create Employee">
+					Create Employee
+				</h2>
 				<div className={styles.formContainer}>
-					{/* <Link to="/employees">View Current Employees</Link> */}
-
 					<form onSubmit={handleSubmit(onSubmit)} id="form-employee" className={styles.form}>
 						<fieldset>
 							<legend className={styles.formLegend}>
@@ -139,60 +96,70 @@ const FormEmployee = () => {
 							</legend>
 							<div className={styles.formGroup}>
 								<div className={styles.formGroupControl}>
-									<label htmlFor="first-name">First Name*</label>
+									<label htmlFor="first-name">First Name</label>
 									<input
 										type="text"
 										id="first-name"
+										placeholder="Ex. Marie"
 										{...register("firstName", {
 											required: "First name is required",
-											minLength: {
-												value: 2,
-												message: "First name must be at least 2 characters",
+											pattern: {
+												value: /^[A-Za-zÀ-ÖØ-öø-ÿ'-\s]{2,50}$/,
+												message:
+													"First name should be 2-50 characters long and can include letters, spaces, hyphens, and apostrophes",
 											},
 										})}
 									/>
 									{errors.firstName && (
-										<span className={styles.error} role="alert">
+										<span className={styles.error} role="alert" aria-live="assertive">
 											{errors.firstName.message}
 										</span>
 									)}
 								</div>
 
 								<div className={styles.formGroupControl}>
-									<label htmlFor="last-name">Last Name*</label>
+									<label htmlFor="last-name">Last Name</label>
 									<input
 										type="text"
 										id="last-name"
+										placeholder="Ex. Dupond"
 										{...register("lastName", {
 											required: "Last name is required",
-											minLength: {
+											/*minLength: {
 												value: 2,
 												message: "Last name must be at least 2 characters",
+											},*/
+											pattern: {
+												value: /^[A-Za-zÀ-ÖØ-öø-ÿ'-\s]{2,50}$/,
+												message:
+													"First name should be 2-50 characters long and can include letters, spaces, hyphens, and apostrophes",
 											},
 										})}
 									/>
 									{errors.lastName && (
-										<span className={styles.error} role="alert">
+										<span className={styles.error} role="alert" aria-live="assertive">
 											{errors.lastName.message}
 										</span>
 									)}
 								</div>
 							</div>
+
 							<div className={styles.formGroup}>
 								<div className={styles.formGroupControl}>
-									<label htmlFor="date-of-birth">Date of Birth*</label>
-									{/* <DateSelector id="date-of-birth" date={dateOfBirth} /> */}
+									<label htmlFor="date-of-birth">Date of Birth</label>
 
 									<Controller
 										name="dateOfBirth"
 										control={control}
 										defaultValue={null}
+										//Règles de validation
 										rules={{
 											required: "Date of birth is required",
 											validate: {
 												validAge: (value) => validateAge(value) || "Age must be between 18 and 65",
 											},
 										}}
+										//Fonction de rendu pour intégrer le composant DateSelector personnalisé.
 										render={({ field }) => (
 											<DateSelector
 												id="date-of-birth"
@@ -205,14 +172,15 @@ const FormEmployee = () => {
 										)}
 									/>
 									{errors.dateOfBirth && (
-										<span className={styles.error} role="alert">
+										<span className={styles.error} role="alert" aria-live="assertive">
 											{errors.dateOfBirth.message}
 										</span>
 									)}
 								</div>
+
 								<div className={styles.formGroupControl}>
-									<label htmlFor="start-date">Start Date*</label>
-									{/* <DateSelector id="date-of-birth" date={startDate} /> */}
+									<label htmlFor="start-date">Start Date</label>
+
 									<Controller
 										name="startDate"
 										control={control}
@@ -232,7 +200,7 @@ const FormEmployee = () => {
 										)}
 									/>
 									{errors.startDate && (
-										<span className={styles.error} role="alert">
+										<span className={styles.error} role="alert" aria-live="assertive">
 											{errors.startDate.message}
 										</span>
 									)}
@@ -248,40 +216,44 @@ const FormEmployee = () => {
 
 							<div className={styles.formGroup}>
 								<div className={styles.formGroupControl}>
-									<label htmlFor="street">Street*</label>
+									<label htmlFor="street">Street</label>
 									<input
 										id="street"
 										type="text"
+										placeholder="12 rue des fleurs"
 										{...register("street", {
 											required: "Street is required",
-											minLength: {
-												value: 5,
-												message: "Street name must be at least 5 characters long",
+											pattern: {
+												value: /^[a-zA-Z0-9\s,.'-]{5,100}$/,
+												message:
+													"Invalid characters in street address and should be 5-100 characters long",
 											},
 										})}
 									/>
 									{errors.street && (
-										<span className={styles.error} role="alert">
+										<span className={styles.error} role="alert" aria-live="assertive">
 											{errors.street.message}
 										</span>
 									)}
 								</div>
 								<div className={styles.formGroupControl}>
-									<label htmlFor="city">City*</label>
+									<label htmlFor="city">City</label>
 									<input
 										id="city"
 										type="text"
+										placeholder="Ex. Guyancourt"
 										{...register("city", {
 											required: "City name is required.",
-											minLength: {
-												value: 4,
-												message: "City name must be at least 4 characters long.",
+											pattern: {
+												value: /^[a-zA-Z\s'-]{4,100}$/,
+												message:
+													"Invalid characters in city name and and should be 4-100 characters long",
 											},
 										})}
 									/>
 
 									{errors.city && (
-										<span className={styles.error} role="alert">
+										<span className={styles.error} role="alert" aria-live="assertive">
 											{errors.city.message}
 										</span>
 									)}
@@ -290,25 +262,22 @@ const FormEmployee = () => {
 
 							<div className={styles.formGroup}>
 								<div className={styles.dropdown}>
-									{/* <label aria-label="Select department">State *</label> */}
 									<label htmlFor="state">State</label>
 
 									<Dropdown
 										id="state"
-										//className={styles.selectMenu}
-										// label="State"
 										value={state}
 										options={stateOptions}
 										onChange={(selectedState) => setState(selectedState)}
-										//onChange={setState}
 									/>
 								</div>
 
 								<div className={styles.formGroupControl}>
-									<label htmlFor="zip-code">Zip Code*</label>
+									<label htmlFor="zip-code">Zip Code</label>
 									<input
 										id="zip-code"
 										type="number"
+										placeholder="Ex. 78000"
 										{...register("zipCode", {
 											required: "Zip code is required",
 											pattern: {
@@ -318,7 +287,7 @@ const FormEmployee = () => {
 										})}
 									/>
 									{errors.zipCode && (
-										<span className={styles.error} role="alert">
+										<span className={styles.error} role="alert" aria-live="assertive">
 											{errors.zipCode.message}
 										</span>
 									)}
@@ -326,21 +295,12 @@ const FormEmployee = () => {
 							</div>
 						</fieldset>
 
-						{/*<fieldset>
-						<legend className={styles.formLegend}>
-							Department
-							<div className={styles.horizontalBar}></div>
-						</legend>
-					</fieldset>*/}
-
 						<div className={styles.dropdownDept}>
 							<label htmlFor="department" className={styles.dept}>
 								Department
 							</label>
 							<Dropdown
 								id="department"
-								//className={styles.selectMenu}
-								// label="Department"
 								value={department}
 								options={departmentOptions}
 								onChange={(selectedDepartment) => setDepartment(selectedDepartment)}
@@ -353,6 +313,7 @@ const FormEmployee = () => {
 					</form>
 				</div>
 			</div>
+			{isOpenModal && <Modal onClose={() => setIsOpenModal(false)} />}
 		</section>
 	);
 };

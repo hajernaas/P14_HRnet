@@ -37,6 +37,7 @@ p {
 	padding-top: 10px;
 	padding-bottom: 20px;
 	padding: 22px 25px;
+	/* margin-top: 15px; */
 	/* background-color: #93ad18; */
 	/* background: #c9c6c6; */
 
@@ -99,5 +100,11 @@ p {
 @media screen and (max-width: 500px) {
 	.footerList {
 		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 325px) {
+	.footer {
+		width: 114%;
 	}
 }

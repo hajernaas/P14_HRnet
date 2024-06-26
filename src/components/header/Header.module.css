@@ -51,7 +51,9 @@
 }
 
 .navbarLogo a h1 {
-	font-size: 22px;
+	/* font-size: 22px; */
+	/* font-size: clamp(1.8rem, 2vw, 2rem); */
+	font-size: clamp(2rem, 2.2vw, 2.2rem);
 	font-weight: 900;
 	color: rgb(27, 36, 24);
 }
@@ -104,26 +106,30 @@
 	width: 100%;
 }
 
-@media only screen and (max-width: 500px) {
-	.navbarToggle a img {
-		width: 20%;
-	}
-}
-
 .navbarToggle a span {
-	font-size: 22px;
+	/* font-size: 22px; */
 	color: rgb(27, 36, 24);
+	font-size: clamp(2rem, 2.2vw, 2.2rem);
+
 	/* font-weight: 900; */
 }
 
 .navbarToggle a:hover span {
-	color: #93ad18;
+	/* color: #93ad18; */
+	color: #73832c;
+	font-weight: 900;
 }
 
 .navbarToggle a .iconHome,
 a .iconUser {
 	color: rgb(27, 36, 24);
 	font-size: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+	.navbarToggle a img {
+		width: 20%;
+	}
 }
 
 /*@media only screen and (max-width: 500px) {
@@ -134,7 +140,7 @@ a .iconUser {
 
 @media screen and (max-width: 500px) {
 	.navbar {
-		padding: 0;
+		padding: 2rem 3rem;
 	}
 	.navbarLogo a {
 		gap: 0.5rem;
@@ -166,4 +172,11 @@ a .iconUser:hover {
 	/*.navbarLogo a h1 {
 		margin-left: -14px;
 	}*/
+}
+
+@media screen and (max-width: 325px) {
+	.navbar {
+		padding: 3rem 2rem;
+		width: 114%;
+	}
 }

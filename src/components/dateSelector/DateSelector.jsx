@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-//import styles from "./DateSelector.module.css";
 import styles from "./DateSelector.module.css";
 
-//pour offrir une sélection de dates personnalisée avec plusieurs fonctionnalités.
+//pour offrir une sélection de dates personnalisée avec plusieurs fonctionnalités en utilisant la bibliothèque react-datepicker
 
 const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 	return (
 		<DatePicker
 			id={id}
 			className={styles.datePicker}
-			selected={date}
-			onChange={onChange}
-			minDate={minDate}
-			maxDate={maxDate}
-			filterDate={filterDate}
-			dateFormat="yyyy-MM-dd"
+			selected={date} // La date actuellement sélectionnée.
+			onChange={onChange} //pour gérer les changements de date.
+			minDate={minDate} //Date minimale sélectionnable.
+			maxDate={maxDate} // Date maximale sélectionnable.
+			filterDate={filterDate} // Fonction pour filtrer les dates spécifiques selon des critères définis
+			dateFormat="dd/MM/yyyy" // Format de la date affichée (jour/mois/année).
+			placeholderText="Ex. 12/03/2024" //texte affiché lorsqu'aucune date n'est sélectionnée.
+			aria-label="Date picker" // Label d'accessibilité pour le composant.
 			renderCustomHeader={({
 				date,
 				changeYear,
@@ -32,12 +33,16 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 						display: "flex",
 						justifyContent: "center",
 					}}>
-					<button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+					<button
+						onClick={decreaseMonth}
+						disabled={prevMonthButtonDisabled}
+						aria-label="Previous month">
 						{"<"}
 					</button>
 					<select
 						value={date.getFullYear()}
-						onChange={({ target: { value } }) => changeYear(value)}>
+						onChange={({ target: { value } }) => changeYear(value)}
+						aria-label="Select year">
 						{Array.from(new Array(100), (v, i) => (
 							<option key={i} value={1950 + i}>
 								{1950 + i}
@@ -45,7 +50,10 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 						))}
 					</select>
 
-					<select value={date.getMonth()} onChange={({ target: { value } }) => changeMonth(value)}>
+					<select
+						value={date.getMonth()}
+						onChange={({ target: { value } }) => changeMonth(value)}
+						aria-label="Select month">
 						{[
 							"January",
 							"February",
@@ -65,7 +73,10 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 							</option>
 						))}
 					</select>
-					<button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+					<button
+						onClick={increaseMonth}
+						disabled={nextMonthButtonDisabled}
+						aria-label="Next month">
 						{">"}
 					</button>
 				</div>
@@ -75,5 +86,3 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 };
 
 export default DateSelector;
-
-//className={`${styles.datePicker} ${hasError ? styles.datePickerError : ""}`}

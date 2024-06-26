@@ -12,11 +12,17 @@
 	/* max-width: 1280px; */
 	max-width: 1440px;
 	margin: 0 auto;
-	padding: 2rem;
+	/* padding: 2rem; */
 	text-align: center;
+	height: 100%;
 }
 * {
 	font-family: copperplate, "Roboto", "Arial";
+}
+
+body {
+	height: 100vh;
+	width: 100%;
 }
 
 html {
