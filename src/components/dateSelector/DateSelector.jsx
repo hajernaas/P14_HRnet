@@ -1,7 +1,9 @@
 import React from "react";
-import DatePicker from "react-datepicker";
+import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./DateSelector.module.css";
+//import { Portal } from "react-overlays";
+
 import PropTypes from "prop-types";
 
 //pour offrir une sélection de dates personnalisée avec plusieurs fonctionnalités en utilisant la bibliothèque react-datepicker
@@ -10,7 +12,7 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 	return (
 		<DatePicker
 			id={id}
-			className={styles.datePicker}
+			className={styles.DatePicker}
 			selected={date} // La date actuellement sélectionnée.
 			onChange={onChange} //pour gérer les changements de date.
 			minDate={minDate} //Date minimale sélectionnable.

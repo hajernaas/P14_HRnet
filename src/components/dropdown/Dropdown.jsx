@@ -42,7 +42,7 @@ Dropdown.propTypes = {
 			value: PropTypes.string.isRequired,
 			label: PropTypes.string.isRequired,
 		})
-	).isRequired, // `options` est un tableau d'objets avec des propriétés `value` et `label`, et il est requis.
+	).isRequired, // `options` est un tableau d'objets avec des propriétés `value` et `label`
 	onChange: PropTypes.func.isRequired,
 };
 

@@ -250,3 +250,12 @@ label {
 		padding: 1rem;
 	}
 }*/
+
+/*.customDatepicker .react-datepicker__tab-loop .react-datepicker-popper {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	transform: translate(200px, 210.5px);
+	will-change: transform;
+}
+*/

@@ -29,7 +29,6 @@ const FormEmployee = () => {
 	//Déclaration des états locaux pour les champs state et department du formulaire.
 	const [state, setState] = useState(stateOptions[0]);
 	const [department, setDepartment] = useState(departmentOptions[0]);
-
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	//our gérer le formulaire, avec des méthodes pour l'inscription des champs, la soumission,
@@ -167,6 +166,7 @@ const FormEmployee = () => {
 												onChange={field.onChange}
 												minDate={minBirthDate}
 												maxDate={maxBirthDate}
+
 												// hasError={!!errors.dateOfBirth}
 											/>
 										)}
@@ -195,7 +195,7 @@ const FormEmployee = () => {
 												onChange={field.onChange}
 												maxDate={today}
 												filterDate={filterStartDate}
-												// hasError={!!errors.dateOfBirth}
+												//className={styles.datepi}
 											/>
 										)}
 									/>
@@ -266,7 +266,7 @@ const FormEmployee = () => {
 
 									<Dropdown
 										id="state"
-										value={state}
+										value={state.value}
 										options={stateOptions}
 										onChange={(selectedState) => setState(selectedState)}
 									/>
@@ -301,7 +301,7 @@ const FormEmployee = () => {
 							</label>
 							<Dropdown
 								id="department"
-								value={department}
+								value={department.value}
 								options={departmentOptions}
 								onChange={(selectedDepartment) => setDepartment(selectedDepartment)}
 							/>

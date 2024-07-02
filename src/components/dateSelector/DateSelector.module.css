@@ -9,11 +9,9 @@
 }
 
 .datePicker:focus {
-	/* border-color: #66afe9; */
 	border-color: #007bff;
 	outline: none;
 	box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
-	/* box-shadow: 0 0 8px hsla(207, 52%, 48%, 0.6);; */
 }
 
 .datePickerError {

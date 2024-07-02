@@ -29,9 +29,9 @@ const Modal = ({ onClose }) => {
 			if (lastFocusElement.current) {
 				lastFocusElement.current.focus();
 			}
-			// Nettoyer l'écouteur d'événements
+
 			document.removeEventListener("keydown", onKeyDown);
-			// Ré-afficher le reste du contenu du body
+
 			document.body.removeAttribute("aria-hidden");
 		};
 	}, [onClose]);
@@ -45,7 +45,7 @@ const Modal = ({ onClose }) => {
 			ref={modalRef}
 			tabIndex="-1">
 			<div className={styles.modalContent}>
-				<h2>Employee Created</h2>
+				<h2 id="modal-title">Employee Created</h2>
 				<button aria-label="Close modal" className={styles.closeModal} onClick={onClose}>
 					X
 				</button>
