@@ -9,7 +9,7 @@ import departments from "../../data/departments.json";
 import DateSelector from "../dateSelector/DateSelector";
 import Dropdown from "../dropdown/Dropdown";
 import styles from "./FormEmployee.module.css";
-import { differenceInYears } from "date-fns";
+import { differenceInYears, format } from "date-fns";
 import imgCreateUser from "../../assets/imgCreateUser.webp";
 import Modal from "../modal/Modal";
 
@@ -58,14 +58,20 @@ const FormEmployee = () => {
 		return date <= today;
 	};
 
+	const formatDate = (date) => {
+		return format(new Date(date), "dd/MM/yyyy");
+	};
+
 	//Fonction pour gérer la soumission du formulaire.
 	//Crée un nouvel objet newEmployee avec les valeurs des champs.
 
 	const onSubmit = (data) => {
 		const newEmployee = {
 			...data,
-			dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth).toISOString() : null,
-			startDate: data.startDate ? new Date(data.startDate).toISOString() : null,
+			/*dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth).toISOString() : null,
+			startDate: data.startDate ? new Date(data.startDate).toISOString() : null,*/
+			dateOfBirth: data.dateOfBirth ? formatDate(data.dateOfBirth) : null,
+			startDate: data.startDate ? formatDate(data.startDate) : null,
 		};
 		// Envoie l'action addEmployee avec les nouvelles données.
 		dispatch(addEmployee(newEmployee));
