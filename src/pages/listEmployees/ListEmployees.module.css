@@ -12,6 +12,7 @@
 	margin-top: 1rem;
 	font-size: 1.75rem;
 }
+
 .tableContainer {
 	/*display: flex;
 	justify-content: center;
@@ -22,20 +23,6 @@
 	/* margin-top: 59px; */
 	/* text-align: left; */
 }
-
-/*table {
-	width: 80%;
-	@media (max-width: 800px) {
-		width: 100%;
-	}
-}*/
-
-/*@media screen and (max-width: 500px) {
-	main {
-		width: 147%;
-	}
-}
-*/
 
 @media screen and (max-width: 375px) {
 	.employeesContainer {

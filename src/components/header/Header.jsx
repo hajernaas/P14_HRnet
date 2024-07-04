@@ -2,8 +2,6 @@ import React from "react";
 import styles from "./Header.module.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { faHouse, faUsers } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/logo.webp";
 
 const Header = () => {
@@ -38,11 +36,6 @@ const Header = () => {
 
 				<div className={styles.navbarToggle}>
 					<NavLink to={toggle ? "/employees" : "/"} onClick={handleToggle}>
-						{/*{toggle ? (
-							<FontAwesomeIcon icon={faHouse} className={styles.iconHome} />
-						) : (
-							<FontAwesomeIcon icon={faUsers} className={styles.iconUser} />
-						)}*/}
 						<span>{toggle ? "EMPLOYEES" : "HOME"}</span>
 					</NavLink>
 				</div>
