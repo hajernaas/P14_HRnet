@@ -22,6 +22,7 @@ const Modal = ({ onClose }) => {
 				onClose();
 			}
 		};
+		
 		document.addEventListener("keydown", onKeyDown);
 
 		return () => {

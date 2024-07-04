@@ -1,34 +1,14 @@
 /* Navbar.module.css */
 
+/*
 .navbar {
-	/* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;*/
-	border-bottom: 2px solid #6c6753;
 	display: flex;
 	justify-content: space-between;
-	/* height: 10rem; */
 	padding: 2rem 4rem;
-	/* width: 100%; */
-	/* background-color: #157846; */
-	/* color: #fff; */
+	
 }
 
-/*@media only screen and (max-width: 870px) {
-	.navbar {
-		flex-direction: column;
-		text-align: center;
-	}
-}
-*/
 
-/*.navbarLogo {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	margin-left: 10px;
-}*/
 
 @media only screen and (max-width: 870px) {
 	.navbarLogo {
@@ -51,8 +31,6 @@
 }
 
 .navbarLogo a h1 {
-	/* font-size: 22px; */
-	/* font-size: clamp(1.8rem, 2vw, 2rem); */
 	font-size: clamp(2rem, 2.2vw, 2.2rem);
 	font-weight: 900;
 	color: rgb(27, 36, 24);
@@ -70,22 +48,10 @@
 	.navbarToggle {
 		gap: 30px;
 		margin-right: 0px;
-		padding-bottom: 15px;
+		
 	}
-}
-/*
-.navbarToggle h1 {
-	font-size: 22px;
-	font-weight: 900;
-	color: rgb(27, 36, 24);
 }
 
-@media only screen and (max-width: 500px) {
-	.navbarToggle h1 {
-		font-size: 16px;
-	}
-}
-*/
 .navbarToggle a {
 	text-decoration: none;
 	display: flex;
@@ -93,29 +59,23 @@
 	align-items: center;
 	gap: 10px;
 	cursor: pointer;
-
 	font-weight: 700;
-	/* font-size: clamp(1.8rem, 2vw, 2rem); */
+	
 }
 
-/*.navbarToggle a:hover {
-	color: #93ad18;
-}
-*/
+
 .navbarToggle a img {
 	width: 100%;
 }
 
 .navbarToggle a span {
-	/* font-size: 22px; */
+
 	color: rgb(27, 36, 24);
 	font-size: clamp(2rem, 2.2vw, 2.2rem);
-
-	/* font-weight: 900; */
 }
 
 .navbarToggle a:hover span {
-	/* color: #93ad18; */
+
 	color: #73832c;
 	font-weight: 900;
 }
@@ -132,22 +92,18 @@ a .iconUser {
 	}
 }
 
-/*@media only screen and (max-width: 500px) {
-	.navbarToggle a span {
-		font-size: 15px;
-	}
-}*/
+
 
 @media screen and (max-width: 500px) {
+
 	.navbar {
 		padding: 2rem 3rem;
 	}
 	.navbarLogo a {
 		gap: 0.5rem;
 	}
-	.navbarToggle a span {
-		font-size: 15px;
-	}
+	
+
 	.navbarLogo a img {
 		max-width: 30px;
 	}
@@ -157,21 +113,127 @@ a .iconUser {
 		font-weight: 600;
 		color: rgb(27, 36, 24);
 	}
+
+	.navbarToggle a span {
+		font-size: 15px;
+	}
+		.navbarToggle a img {
+		width: 20%;
+	}
 }
 
-/*.navbarToggle a .iconHome:hover,
-a .iconUser:hover {
-	color: #93ad18;
-}
-*/
+
 
 @media screen and (max-width: 374px) {
 	.navbarLogo a img {
 		max-width: 25px;
 	}
-	/*.navbarLogo a h1 {
-		margin-left: -14px;
+	
+}
+
+@media screen and (max-width: 325px) {
+	.navbar {
+		padding: 3rem 2rem;
+		width: 114%;
+	}
+}*/
+
+/*header {
+	width: 100%;
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+}*/
+
+header img {
+	height: 50px;
+}
+
+.navbar {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #fff;
+	/* border-bottom: 2px solid #6c6753; */
+}
+
+.navbarLogo a {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.navbarLogo a img {
+	max-width: 60px;
+	height: 100%;
+}
+
+.navbarLogo a h1 {
+	font-size: 2.2rem;
+	font-weight: 900;
+	color: rgb(27, 36, 24);
+}
+
+.navbarToggle a span {
+	color: rgb(27, 36, 24);
+	font-size: 2.2rem;
+	font-weight: 900;
+}
+
+.navbarToggle a:hover span {
+	color: #73832c;
+}
+
+/*@media screen and (max-width: 768px) {
+	.navbar {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	header img {
+		margin-bottom: 10px;
+	}
+}*/
+
+@media screen and (max-width: 500px) {
+	/*.navbar {
+		padding: 2rem 3rem;
 	}*/
+	/*.navbarLogo a {
+		gap: 0.5rem;
+	}*/
+
+	/*.navbar {
+		font-size: 10px;
+	}*/
+	.navbarLogo a img {
+		max-width: 30px;
+	}
+
+	.navbarLogo a h1 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: rgb(27, 36, 24);
+	}
+
+	.navbarToggle a span {
+		font-size: 1.5rem;
+	}
+	.navbarToggle a img {
+		width: 20%;
+	}
+}
+
+@media screen and (max-width: 374px) {
+	.navbarLogo a img {
+		max-width: 25px;
+	}
 }
 
 @media screen and (max-width: 325px) {
