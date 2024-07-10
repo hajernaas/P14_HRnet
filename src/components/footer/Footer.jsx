@@ -4,7 +4,7 @@ import styles from "./Footer.module.css";
 const Footer = () => {
 	return (
 		<footer className={styles.footer}>
-			<h3 className={styles.footerTitle}>Wealth Health</h3>
+			{/* <h3 className={styles.footerTitle}>Wealth Health</h3> */}
 			<ul className={styles.footerList}>
 				<li className={styles.footerListLi}>
 					<a href="#">Terms of use</a>
