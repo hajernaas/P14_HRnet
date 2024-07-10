@@ -72,6 +72,8 @@ const FormEmployee = () => {
 			startDate: data.startDate ? new Date(data.startDate).toISOString() : null,*/
 			dateOfBirth: data.dateOfBirth ? formatDate(data.dateOfBirth) : null,
 			startDate: data.startDate ? formatDate(data.startDate) : null,
+			state: state.value,
+			department: department.label,
 		};
 		// Envoie l'action addEmployee avec les nouvelles données.
 		dispatch(addEmployee(newEmployee));
@@ -269,10 +271,9 @@ const FormEmployee = () => {
 							<div className={styles.formGroup}>
 								<div className={styles.dropdown}>
 									<label htmlFor="state">State</label>
-
 									<Dropdown
 										id="state"
-										value={state.value}
+										value={state}
 										options={stateOptions}
 										onChange={(selectedState) => setState(selectedState)}
 									/>
@@ -307,7 +308,7 @@ const FormEmployee = () => {
 							</label>
 							<Dropdown
 								id="department"
-								value={department.value}
+								value={department}
 								options={departmentOptions}
 								onChange={(selectedDepartment) => setDepartment(selectedDepartment)}
 							/>
