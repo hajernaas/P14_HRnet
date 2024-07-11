@@ -17,6 +17,7 @@ const Dropdown = ({ id, value, options, onChange }) => {
 		/>
 	);
 };
+
 Dropdown.propTypes = {
 	id: PropTypes.string.isRequired,
 	value: PropTypes.shape({
