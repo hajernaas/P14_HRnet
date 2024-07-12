@@ -12,6 +12,7 @@ import styles from "./FormEmployee.module.css";
 import { differenceInYears, format } from "date-fns";
 import imgCreateUser from "../../assets/imgCreateUser.webp";
 import Modal from "../modal/Modal";
+import { nanoid } from "nanoid";
 
 const FormEmployee = () => {
 	//Options pour les départements , générées à partir du fichier departments.json.
@@ -67,6 +68,7 @@ const FormEmployee = () => {
 
 	const onSubmit = (data) => {
 		const newEmployee = {
+			id: nanoid(),
 			...data,
 			dateOfBirth: data.dateOfBirth ? formatDate(data.dateOfBirth) : null,
 			startDate: data.startDate ? formatDate(data.startDate) : null,
