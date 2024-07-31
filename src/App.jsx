@@ -4,7 +4,6 @@ import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import ListEmployees from "./pages/listEmployees/ListEmployees";
 import "./App.css";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //const ListEmployees = lazy(() => import("./pages/listEmployees/ListEmployees"));

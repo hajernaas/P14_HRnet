@@ -3,7 +3,6 @@ import listEmployees from "../data/listEmployees.json";
 
 const initialState = {
 	employees: listEmployees, //Liste d'employés initiales prédéfinie dans un fichier json
-	//employees: [],
 };
 
 const employeesSlice = createSlice({

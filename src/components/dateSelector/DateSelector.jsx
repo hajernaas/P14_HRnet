@@ -2,13 +2,22 @@ import React from "react";
 import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./DateSelector.module.css";
-//import { Portal } from "react-overlays";
-
 import PropTypes from "prop-types";
 
-//pour offrir une sélection de dates personnalisée avec plusieurs fonctionnalités en utilisant la bibliothèque react-datepicker
+/**
+ * Composant permettant la sélection de dates avec des fonctionnalités personnalisées en utilisant la bibliothèque react-datepicker
+ *
+ * @param {Object} props - Les propriétés du composant.
+ * @param {string} props.id - L'identifiant unique du composant.
+ * @param {Date} [props.date] - La date actuellement sélectionnée. Peut être `null` si aucune date n'est sélectionnée.
+ * @param {Function} props.onChange - Fonction appelée lors du changement de la date. Reçoit la nouvelle date comme argument.
+ * @param {Date} [props.minDate] - Date minimale sélectionnable. Peut être `null` si aucune limite inférieure n'est définie.
+ * @param {Date} [props.maxDate] - Date maximale sélectionnable. Peut être `null` si aucune limite supérieure n'est définie.
+ * @param {Function} [props.filterDate] - Fonction pour filtrer les dates spécifiques selon des critères définis. Reçoit une date en argument et doit retourner `true` pour les dates valides et `false` pour les dates non valides.
+ * @returns {JSX.Element} Le composant DateSelector.
+ */
 
-const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
+const DateSelector = ({ id, date, onChange, minDate, maxDate }) => {
 	return (
 		<DatePicker
 			id={id}
@@ -17,7 +26,7 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate, filterDate }) => {
 			onChange={onChange} //pour gérer les changements de date.
 			minDate={minDate} //Date minimale sélectionnable.
 			maxDate={maxDate} // Date maximale sélectionnable.
-			filterDate={filterDate} // Fonction pour filtrer les dates spécifiques selon des critères définis
+			//filterDate={filterDate} // Fonction pour filtrer les dates spécifiques selon des critères définis
 			dateFormat="dd/MM/yyyy" // Format de la date affichée (jour/mois/année).
 			placeholderText="Ex. 12/03/2024" //texte affiché lorsqu'aucune date n'est sélectionnée.
 			aria-label="Date picker" // Label d'accessibilité pour le composant.

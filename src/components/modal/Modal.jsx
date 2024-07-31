@@ -2,6 +2,16 @@ import React, { useEffect, useRef } from "react";
 import styles from "./Modal.module.css";
 import PropTypes from "prop-types";
 
+/**
+ * La modale est accessible avec les touches du clavier, et elle peut être fermée en appuyant sur la touche Échap ou en cliquant sur le bouton de fermeture.
+ * Lors de l'ouverture de la modale, le focus est déplacé vers la modale, et l'élément qui avait le focus avant l'ouverture est enregistré.
+ * Lors de la fermeture, le focus est restauré sur l'élément précédemment focalisé.
+ *
+ * @param {Object} props - Les propriétés du composant.
+ * @param {Function} props.onClose - Fonction de rappel appelée lorsque la modale est fermée. Cette fonction est déclenchée lorsqu'on clique sur le bouton de fermeture ou en appuyant sur la touche Échap.
+ * @returns {JSX.Element} Le composant Modal.
+ */
+
 const Modal = ({ onClose }) => {
 	const modalRef = useRef(null); //référence pour accéder directement au DOM de la modale
 	const lastFocusElement = useRef(null); //référence pour stocker l'élément qui avait le focus avant l'ouverture de la modale.
@@ -22,7 +32,7 @@ const Modal = ({ onClose }) => {
 				onClose();
 			}
 		};
-		
+
 		document.addEventListener("keydown", onKeyDown);
 
 		return () => {

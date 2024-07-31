@@ -1,5 +1,3 @@
-//créer un nouvel employé en remplissant un formulaire. Une fois le formulaire soumis, les données sont envoyées
-// au store Redux à l'aide de useDispatch pour ajouter le nouvel employé à la liste des employés
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
@@ -13,6 +11,16 @@ import { differenceInYears, format } from "date-fns";
 import imgCreateUser from "../../assets/imgCreateUser.webp";
 import Modal from "../modal/Modal";
 import { nanoid } from "nanoid";
+
+/**
+ * Formulaire pour créer un nouvel employé.
+ *
+ * Ce composant gère la création d'un nouvel employé en fournissant un formulaire permettant à l'utilisateur de saisir des informations personnelles,
+ * Les données du formulaire sont envoyées au store Redux à l'aide de `useDispatch`
+ * pour ajouter le nouvel employé à la liste des employés. Lors de la soumission, une fenêtre modale s'ouvre pour confirmer l'ajout.
+ *
+ * @returns {JSX.Element} Le composant FormEmployee.
+ */
 
 const FormEmployee = () => {
 	//Options pour les départements , générées à partir du fichier departments.json.
@@ -74,8 +82,6 @@ const FormEmployee = () => {
 			startDate: data.startDate ? formatDate(data.startDate) : null,
 			state: state.value,
 			department: department.value,
-			//state,
-			//department,
 		};
 		// Envoie l'action addEmployee avec les nouvelles données.
 		dispatch(addEmployee(newEmployee));
@@ -93,7 +99,7 @@ const FormEmployee = () => {
 				<p>An internal web application, which manages employee files.</p>
 			</div>
 			<div className={styles.formRight}>
-				<h2 className={styles.title} aria-label="Create Employee">
+				<h2 className={styles.title} aria-label="Create Employee" data-testid="create-employee">
 					Create Employee
 				</h2>
 				<div className={styles.formContainer}>
@@ -110,6 +116,7 @@ const FormEmployee = () => {
 										type="text"
 										id="first-name"
 										placeholder="Ex. Marie"
+										data-testid="first-name"
 										{...register("firstName", {
 											required: "First name is required",
 											pattern: {
@@ -132,16 +139,14 @@ const FormEmployee = () => {
 										type="text"
 										id="last-name"
 										placeholder="Ex. Dupond"
+										data-testid="last-name"
 										{...register("lastName", {
 											required: "Last name is required",
-											/*minLength: {
-												value: 2,
-												message: "Last name must be at least 2 characters",
-											},*/
+
 											pattern: {
 												value: /^[A-Za-zÀ-ÖØ-öø-ÿ'-\s]{2,50}$/,
 												message:
-													"First name should be 2-50 characters long and can include letters, spaces, hyphens, and apostrophes",
+													"Last name should be 2-50 characters long and can include letters, spaces, hyphens, and apostrophes",
 											},
 										})}
 									/>
@@ -155,7 +160,9 @@ const FormEmployee = () => {
 
 							<div className={styles.formGroup}>
 								<div className={styles.formGroupControl}>
-									<label htmlFor="date-of-birth">Date of Birth</label>
+									<label htmlFor="date-of-birth" data-testid="date-of-birth-selector">
+										Date of Birth
+									</label>
 
 									<Controller
 										name="dateOfBirth"
@@ -165,7 +172,7 @@ const FormEmployee = () => {
 										rules={{
 											required: "Date of birth is required",
 											validate: {
-												validAge: (value) => validateAge(value) || "Age must be between 18 and 65",
+												validAge: (value) => validateAge(value),
 											},
 										}}
 										//Fonction de rendu pour intégrer le composant DateSelector personnalisé.
@@ -176,8 +183,6 @@ const FormEmployee = () => {
 												onChange={field.onChange}
 												minDate={minBirthDate}
 												maxDate={maxBirthDate}
-
-												// hasError={!!errors.dateOfBirth}
 											/>
 										)}
 									/>
@@ -189,7 +194,9 @@ const FormEmployee = () => {
 								</div>
 
 								<div className={styles.formGroupControl}>
-									<label htmlFor="start-date">Start Date</label>
+									<label htmlFor="start-date" data-testid="start-date-selector">
+										Start Date
+									</label>
 
 									<Controller
 										name="startDate"
@@ -203,9 +210,8 @@ const FormEmployee = () => {
 												id="start-date"
 												date={field.value}
 												onChange={field.onChange}
-												maxDate={today}
-												filterDate={filterStartDate}
-												//className={styles.datepi}
+												//maxDate={today}
+												//filterDate={filterStartDate}
 											/>
 										)}
 									/>
@@ -231,6 +237,7 @@ const FormEmployee = () => {
 										id="street"
 										type="text"
 										placeholder="12 rue des fleurs"
+										data-testid="street"
 										{...register("street", {
 											required: "Street is required",
 											pattern: {
@@ -252,6 +259,7 @@ const FormEmployee = () => {
 										id="city"
 										type="text"
 										placeholder="Ex. Guyancourt"
+										data-testid="city"
 										{...register("city", {
 											required: "City name is required.",
 											pattern: {
@@ -272,7 +280,9 @@ const FormEmployee = () => {
 
 							<div className={styles.formGroup}>
 								<div className={styles.dropdown}>
-									<label htmlFor="state">State</label>
+									<label htmlFor="state" data-testid="state">
+										State
+									</label>
 									<Dropdown
 										id="state"
 										value={state}
@@ -287,6 +297,7 @@ const FormEmployee = () => {
 										id="zip-code"
 										type="number"
 										placeholder="Ex. 78000"
+										data-testid="zip-code"
 										{...register("zipCode", {
 											required: "Zip code is required",
 											pattern: {
@@ -305,7 +316,7 @@ const FormEmployee = () => {
 						</fieldset>
 
 						<div className={styles.dropdownDept}>
-							<label htmlFor="department" className={styles.dept}>
+							<label htmlFor="department" className={styles.dept} data-testid="department">
 								Department
 							</label>
 							<Dropdown
@@ -316,13 +327,19 @@ const FormEmployee = () => {
 							/>
 						</div>
 
-						<button aria-label="Submit form" className={styles.submitBtn} type="submit">
+						<button
+							aria-label="Submit form"
+							className={styles.submitBtn}
+							type="submit"
+							data-testid="btn-submit-form">
 							Save
 						</button>
 					</form>
 				</div>
 			</div>
-			{isOpenModal && <Modal onClose={() => setIsOpenModal(false)} />}
+			<div data-testid="form-modal-container">
+				{isOpenModal && <Modal onClose={() => setIsOpenModal(false)} />}
+			</div>
 		</section>
 	);
 };

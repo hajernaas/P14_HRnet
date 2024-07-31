@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { EmployeeTable } from "datatable-component-library";
+import { DataTable } from "datatable-component-library";
 import "datatable-component-library/dist/style.css";
 import styles from "./ListEmployees.module.css";
 
@@ -10,7 +10,7 @@ const ListEmployees = () => {
 		<main className={styles.employeesContainer}>
 			<h2 className={styles.titre}>Current Employees</h2>
 			{/* <div className={styles.tableContainer}> */}
-			<EmployeeTable infoEmployees={employees} />
+			<DataTable jsonData={employees} />
 			{/* </div> */}
 		</main>
 	);
