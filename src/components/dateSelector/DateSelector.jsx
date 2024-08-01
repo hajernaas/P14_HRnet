@@ -22,10 +22,10 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate }) => {
 		<DatePicker
 			id={id}
 			className={styles.DatePicker}
-			selected={date} // La date actuellement sélectionnée.
-			onChange={onChange} //pour gérer les changements de date.
-			minDate={minDate} //Date minimale sélectionnable.
-			maxDate={maxDate} // Date maximale sélectionnable.
+			selected={date}
+			onChange={onChange}
+			minDate={minDate}
+			maxDate={maxDate}
 			//filterDate={filterDate} // Fonction pour filtrer les dates spécifiques selon des critères définis
 			dateFormat="dd/MM/yyyy" // Format de la date affichée (jour/mois/année).
 			placeholderText="Ex. 12/03/2024" //texte affiché lorsqu'aucune date n'est sélectionnée.
