@@ -40,7 +40,7 @@ const FormEmployee = () => {
 	const [department, setDepartment] = useState(departmentOptions[0]);
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
-	//our gérer le formulaire, avec des méthodes pour l'inscription des champs, la soumission,
+	//Pour gérer le formulaire, avec des méthodes pour l'inscription des champs, la soumission,
 	//la gestion des erreurs, la réinitialisation, et le contrôle des champs.
 	const {
 		register,
@@ -50,7 +50,7 @@ const FormEmployee = () => {
 		control,
 	} = useForm();
 
-	//pour envoyer des actions au store Redux.
+	//Pour envoyer des actions au store Redux.
 	const dispatch = useDispatch();
 
 	const today = new Date();
@@ -62,11 +62,6 @@ const FormEmployee = () => {
 		return age >= 18 && age <= 64;
 	};
 
-	// pour filtrer les dates de début qui ne sont pas dans le futur
-	const filterStartDate = (date) => {
-		return date <= today;
-	};
-
 	const formatDate = (date) => {
 		return format(new Date(date), "dd/MM/yyyy");
 	};
@@ -75,17 +70,26 @@ const FormEmployee = () => {
 	//Crée un nouvel objet newEmployee avec les valeurs des champs.
 
 	const onSubmit = (data) => {
+		const formattedStartDate = data.startDate ? formatDate(data.startDate) : null;
+		const formattedDateOfBirth = data.dateOfBirth ? formatDate(data.dateOfBirth) : null;
+
 		const newEmployee = {
 			id: nanoid(),
-			...data,
-			dateOfBirth: data.dateOfBirth ? formatDate(data.dateOfBirth) : null,
-			startDate: data.startDate ? formatDate(data.startDate) : null,
-			state: state.value,
+			firstName: data.firstName,
+			lastName: data.lastName,
+			startDate: formattedStartDate,
 			department: department.value,
+			dateOfBirth: formattedDateOfBirth,
+			street: data.street,
+			city: data.city,
+			state: state.value,
+			zipCode: data.zipCode,
 		};
-		// Envoie l'action addEmployee avec les nouvelles données.
+
+		// Envoyer l'action addEmployee avec des nouvelles données.
 		dispatch(addEmployee(newEmployee));
-		//Réinitialise les champs du formulaire.
+
+		//Réinitialiser les champs du formulaire.
 		reset();
 		setIsOpenModal(true);
 		setState(stateOptions[0]);
@@ -168,7 +172,6 @@ const FormEmployee = () => {
 										name="dateOfBirth"
 										control={control}
 										defaultValue={null}
-										//Règles de validation
 										rules={{
 											required: "Date of birth is required",
 											validate: {
@@ -206,13 +209,7 @@ const FormEmployee = () => {
 											required: "Start date is required",
 										}}
 										render={({ field }) => (
-											<DateSelector
-												id="start-date"
-												date={field.value}
-												onChange={field.onChange}
-												//maxDate={today}
-												//filterDate={filterStartDate}
-											/>
+											<DateSelector id="start-date" date={field.value} onChange={field.onChange} />
 										)}
 									/>
 									{errors.startDate && (

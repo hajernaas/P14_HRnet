@@ -1,5 +1,5 @@
 import React from "react";
-import DatePicker, { CalendarContainer } from "react-datepicker";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./DateSelector.module.css";
 import PropTypes from "prop-types";
@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
  * @param {Function} props.onChange - Fonction appelée lors du changement de la date. Reçoit la nouvelle date comme argument.
  * @param {Date} [props.minDate] - Date minimale sélectionnable. Peut être `null` si aucune limite inférieure n'est définie.
  * @param {Date} [props.maxDate] - Date maximale sélectionnable. Peut être `null` si aucune limite supérieure n'est définie.
- * @param {Function} [props.filterDate] - Fonction pour filtrer les dates spécifiques selon des critères définis. Reçoit une date en argument et doit retourner `true` pour les dates valides et `false` pour les dates non valides.
  * @returns {JSX.Element} Le composant DateSelector.
  */
 
@@ -26,10 +25,9 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate }) => {
 			onChange={onChange}
 			minDate={minDate}
 			maxDate={maxDate}
-			//filterDate={filterDate} // Fonction pour filtrer les dates spécifiques selon des critères définis
 			dateFormat="dd/MM/yyyy" // Format de la date affichée (jour/mois/année).
 			placeholderText="Ex. 12/03/2024" //texte affiché lorsqu'aucune date n'est sélectionnée.
-			aria-label="Date picker" // Label d'accessibilité pour le composant.
+			aria-label="Date picker"
 			renderCustomHeader={({
 				date,
 				changeYear,

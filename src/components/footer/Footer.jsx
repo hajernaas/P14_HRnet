@@ -26,7 +26,7 @@ const Footer = () => {
 					<a href="mailto:contact.WealthHealth@gmail.com">Contact</a>
 				</li>
 			</ul>
-			<h4 className={styles.copyright}>Copyright 2024 Wealth Health</h4>
+			<p className={styles.copyright}>Copyright 2024 Wealth Health</p>
 		</footer>
 	);
 };

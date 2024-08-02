@@ -23,8 +23,8 @@ const Modal = ({ onClose }) => {
 		// Déplacer le focus sur la modale
 		modalRef.current.focus();
 
-		// Masquer le reste du contenu du body
-		document.body.setAttribute("aria-hidden", "true");
+		// Désactiver le focus sur les éléments non modaux en ajoutant une classe CSS
+		document.body.classList.add(styles.modalOpen);
 
 		// Ajouter l'écouteur d'événements pour la touche Escape
 		const onKeyDown = (event) => {
@@ -43,7 +43,7 @@ const Modal = ({ onClose }) => {
 
 			document.removeEventListener("keydown", onKeyDown);
 
-			document.body.removeAttribute("aria-hidden");
+			document.body.classList.remove(styles.modalOpen);
 		};
 	}, [onClose]);
 

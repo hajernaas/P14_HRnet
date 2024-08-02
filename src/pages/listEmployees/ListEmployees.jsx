@@ -9,9 +9,7 @@ const ListEmployees = () => {
 	return (
 		<main className={styles.employeesContainer}>
 			<h2 className={styles.titre}>Current Employees</h2>
-			{/* <div className={styles.tableContainer}> */}
 			<DataTable jsonData={employees} />
-			{/* </div> */}
 		</main>
 	);
 };
