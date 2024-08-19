@@ -12,12 +12,9 @@
 		"coverage": "vitest run --coverage"
 	},
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^6.5.2",
-		"@fortawesome/free-solid-svg-icons": "^6.5.2",
-		"@fortawesome/react-fontawesome": "^0.2.2",
 		"@reduxjs/toolkit": "^2.2.6",
 		"@testing-library/dom": "^10.4.0",
-		"datatable-component-library": "^1.0.21",
+		"datatable-component-library": "^1.0.23",
 		"date-fns": "^3.6.0",
 		"nanoid": "^5.0.7",
 		"prop-types": "^15.8.1",

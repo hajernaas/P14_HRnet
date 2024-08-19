@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
+import { describe, test, expect } from "vitest";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import userEvent from "@testing-library/user-event";
@@ -95,7 +96,7 @@ describe("FormEmployee component", () => {
 		// Vérifier les messages d'erreur pour les valeurs invalides
 		expect(
 			await screen.findByText(
-				/First name should be 2-50 characters long and can include letters, spaces, hyphens, and apostrophes/i
+				"First name should be 2-50 characters long and can include letters, spaces, hyphens, and apostrophes"
 			)
 		).toBeInTheDocument();
 		expect(

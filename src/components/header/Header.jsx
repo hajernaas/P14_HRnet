@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import logo from "../../assets/logo.webp";
 
 /**
- *
  * Ce composant affiche la barre de navigation en haut de la page. Il inclut le logo de l'application
  * et un lien "EMPLOYEES" ou "HOME" qui est géré en fonction de l'URL actuelle
  *

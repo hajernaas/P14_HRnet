@@ -40,15 +40,16 @@ Il a également été demandé de créer un plugin pour remplacer les quatre plu
 
 ## Initialisation du projet
 
-- Cloner le dépot - (https://github.com/hajernaas/P14_HRnet.git).
-- Installer les dépendances
+- Cloner le dépot : (https://github.com/hajernaas/P14_HRnet.git).
+
+- Installer les dépendances :
 
 ```
 npm install
 
 ```
 
-- Lancer le Front-end
+- Lancer le Front-end :
 
 ```
  npm run dev

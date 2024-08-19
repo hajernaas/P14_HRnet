@@ -8,7 +8,7 @@ const persistConfig = {
 	storage,
 };
 
-// un reducer modifié par persistReducer pour inclure les fonctionnalités de persistance selon la configuration définie.
+//Un reducer modifié par persistReducer pour inclure les fonctionnalités de persistance selon la configuration définie.
 const persistedReducer = persistReducer(persistConfig, employeesReducer);
 
 export const store = configureStore({
@@ -16,7 +16,7 @@ export const store = configureStore({
 		employees: persistedReducer,
 	},
 	// Pour ignorer certaines actions de redux-persist (celles qui ne sont pas sérialisables)
-	//afin d'éviter des erreurs liées à la vérification de la sérialisation (serializableCheck).
+	// afin d'éviter des erreurs liées à la vérification de la sérialisation (serializableCheck).
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
 			serializableCheck: {

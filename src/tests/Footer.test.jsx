@@ -12,6 +12,7 @@ describe("Footer Component", () => {
 		expect(screen.getByText("Privacy policy")).toBeInTheDocument();
 		expect(screen.getByText("Legal")).toBeInTheDocument();
 		expect(screen.getByText("Contact")).toBeInTheDocument();
+		// Vérifier que le texte de copyright est présent
 		expect(screen.getByText("Copyright 2024 Wealth Health")).toBeInTheDocument();
 
 		// Vérifier les attributs des liens
@@ -32,13 +33,5 @@ describe("Footer Component", () => {
 		// Vérifier que la liste contient exactement 4 éléments
 		const listItems = screen.getAllByRole("listitem");
 		expect(listItems).toHaveLength(4);
-	});
-
-	test("should contain the copyright text", () => {
-		render(<Footer />);
-
-		// Vérifier que le texte de copyright est présent
-		const copyrightText = screen.getByText("Copyright 2024 Wealth Health");
-		expect(copyrightText).toBeInTheDocument();
 	});
 });

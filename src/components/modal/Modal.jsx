@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
  * Lors de la fermeture, le focus est restauré sur l'élément précédemment focalisé.
  *
  * @param {Object} props - Les propriétés du composant.
- * @param {Function} props.onClose - Fonction de rappel appelée lorsque la modale est fermée. Cette fonction est déclenchée lorsqu'on clique sur le bouton de fermeture ou en appuyant sur la touche Échap.
+ * @param {Function} props.onClose - Fonction de rappel appelée lorsque la modale est fermée.
  * @returns {JSX.Element} Le composant Modal.
  */
 

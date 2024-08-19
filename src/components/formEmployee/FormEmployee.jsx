@@ -13,11 +13,9 @@ import Modal from "../modal/Modal";
 import { nanoid } from "nanoid";
 
 /**
- * Formulaire pour créer un nouvel employé.
- *
  * Ce composant gère la création d'un nouvel employé en fournissant un formulaire permettant à l'utilisateur de saisir des informations personnelles,
- * Les données du formulaire sont envoyées au store Redux à l'aide de `useDispatch`
- * pour ajouter le nouvel employé à la liste des employés. Lors de la soumission, une fenêtre modale s'ouvre pour confirmer l'ajout.
+ * Les données du formulaire sont envoyées au store Redux à l'aide de `useDispatch` pour ajouter le nouvel employé à la liste des employés.
+ * Lors de la soumission, une fenêtre modale s'ouvre pour confirmer l'ajout.
  *
  * @returns {JSX.Element} Le composant FormEmployee.
  */
@@ -35,7 +33,7 @@ const FormEmployee = () => {
 		label: state.name,
 	}));
 
-	//Déclaration des états locaux pour les champs state et department du formulaire.
+	//Déclaration des états locaux pour les champs state et department du formulaire et la fenêtre modale
 	const [state, setState] = useState(stateOptions[0]);
 	const [department, setDepartment] = useState(departmentOptions[0]);
 	const [isOpenModal, setIsOpenModal] = useState(false);
@@ -91,9 +89,9 @@ const FormEmployee = () => {
 
 		//Réinitialiser les champs du formulaire.
 		reset();
-		setIsOpenModal(true);
 		setState(stateOptions[0]);
 		setDepartment(departmentOptions[0]);
+		setIsOpenModal(true);
 	};
 
 	return (
@@ -167,7 +165,6 @@ const FormEmployee = () => {
 									<label htmlFor="date-of-birth" data-testid="date-of-birth-selector">
 										Date of Birth
 									</label>
-
 									<Controller
 										name="dateOfBirth"
 										control={control}

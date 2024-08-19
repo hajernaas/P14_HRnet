@@ -25,9 +25,8 @@ const DateSelector = ({ id, date, onChange, minDate, maxDate }) => {
 			onChange={onChange}
 			minDate={minDate}
 			maxDate={maxDate}
-			dateFormat="dd/MM/yyyy" // Format de la date affichée (jour/mois/année).
-			placeholderText="Ex. 12/03/2024" //texte affiché lorsqu'aucune date n'est sélectionnée.
-			aria-label="Date picker"
+			dateFormat="dd/MM/yyyy"
+			placeholderText="Ex. 12/03/2024"
 			renderCustomHeader={({
 				date,
 				changeYear,

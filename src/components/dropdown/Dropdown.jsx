@@ -3,8 +3,6 @@ import Select from "react-select";
 import styles from "./Dropdown.module.css";
 import PropTypes from "prop-types";
 
-//pour offrir une sélection d'options à partir d'un menu déroulant en utilisant la bibliothéque react-select
-
 /**
  * Composant de menu déroulant utilisant `react-select` pour permettre la sélection d'options.
  *
